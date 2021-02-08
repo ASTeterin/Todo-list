@@ -15,8 +15,8 @@ class Database {
     public function getConnection(){
 
         $this->db = null;
-        $this->db = new MysqliDb(HOST, USER, PASSWORD, DATABASE);
-        //$this->$db = new MysqliDb($this->$host, $this->$username, $this->$password, $this->$db_name);
+        //$this->db = new MysqliDb(HOST, USER, PASSWORD, DATABASE);
+        $this->db = new MysqliDb($this->host, $this->username, $this->password, $this->db_name);
         return $this->db;
     }
 
