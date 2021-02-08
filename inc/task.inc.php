@@ -15,8 +15,14 @@ class Task {
 
     public function read() {
         $this->db->where('id_task');
-        $task = $this->db->get('task');
+        $task = $this->db->get($this->table_name);
         return (isset($task)) ? $task : null; 
+    }
+
+    public function delete($id) {
+        $this->db->where('id_task', $id);
+        if ($this->db->delete($this->table_name)) echo 'successful';
+
     }
 
 }
