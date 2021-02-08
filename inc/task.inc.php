@@ -25,30 +25,14 @@ class Task {
 
     }
 
-    public function add() {
-        $data = Array (
-            "task_name" => "adm",
-            "task_text" => "John",
-
-        );
-
-        $d = ['task_name' => 'task1234', 'task_text' => 'task2 text']; 
-
-        //$this->db->where('id_task', 4);
-        //$task = $this->db->get($this->table_name);
-        //$newTask = new Task($this->db);
-
-        //$newTask->task_name = $task->task_name;
-        //$newTask->task_text = $task->task_text;
-        //$newTask->is_done = $task->is_done;
-
-        $id = $this->db->insert('task', $d);
-        var_dump($id);
-        //$this->db->where('id_task', 4);
-        //$this->db->update('task', $d);
-        if($id)
-        echo 'task was created. Id=' . $id;
-        else echo "error";
+    public function add($data) {
+        try {
+            $id = $this->db->insert('task', $data);
+            return (isset($id)) ? $id : null;    
+        }
+        catch (Exeption $ex) {
+            echo $ex->getMessage();
+       }
     }
 
     public function makeDone($id) {
