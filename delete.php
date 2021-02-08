@@ -10,6 +10,16 @@ require_once('inc/common.inc.php');
 
 $database = new Database();
 $db = $database->getConnection();
-//print_r($db);
 $task = new Task($db);
-//$task->delete(1);
+$data = getDataFromRequest();
+
+if (!$data['id_task']) {
+    header('HTTP/1.0 400 Bad Request');
+    echo json_encode(array(
+        'error' => 'Bad Request'
+        ));
+}
+else {
+    $task->delete($data['id_task']);
+}
+
