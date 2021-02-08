@@ -1,31 +1,31 @@
 <?php
 
 require_once('inc/common.inc.php');
-const COLUMN_NAMES = ['id_task', 'task_name', 'task_text', 'is_done'];
+
 
 function checkRequestedData($data) {
     foreach($data as $key => $value) {
         if (!in_array($key, COLUMN_NAMES)) {
             echo 'error in column name';
-            return 1;
+            return ERR_COLUMN_NAME;
         }
         if (strlen($value) > MAX_TASK_TEXT_LEN) {
             echo 'max len';
-            return 1;
+            return ERR_MAX_LEN_TEXT;
         }
     }
-    return 0;   
+    return ERR_NO_ERROR;   
 }
+
+$data = json_decode(file_get_contents("php://input"), true);
+//echo '1111';
+print_r($data);
 
 $database = new Database();
 $db = $database->getConnection();
 //print_r($db);
 $task = new Task($db);
-$data = [
-    'task_name1' => 'qwerty',
-    'task_text' => 'ehwfhewjkgwkjghjh hjegkhekgh eghrjhj erhejerkehjjehk'
-];
-
+ 
 if (!checkRequestedData($data)) {
     $result = $task->add($data);
     if ($result)

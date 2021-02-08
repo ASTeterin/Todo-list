@@ -12,7 +12,4 @@ $database = new Database();
 $db = $database->getConnection();
 //print_r($db);
 $task = new Task($db);
-$data = file_get_contents("php://input");
-echo '1111';
-print_r($data);
 //$task->delete(1);
