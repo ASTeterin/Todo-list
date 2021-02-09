@@ -13,13 +13,25 @@ $db = $database->getConnection();
 $task = new Task($db);
 $data = getDataFromRequest();
 
-if (!$data['id_task']) {
+if (!$data[ID_TASK]) {
     header('HTTP/1.0 400 Bad Request');
     echo json_encode(array(
         'error' => 'Bad Request'
         ));
+    return;
 }
-else {
-    $task->delete($data['id_task']);
+
+$id_task = $data[ID_TASK];
+if (!$task->getTaskById($id_task)) {
+    header('HTTP/1.0 400 Bad Request');
+    echo json_encode(array(
+        'error' => 'Task is missing'
+        ));
+    return;    
 }
+
+    if ($task->delete($data[ID_TASK])) {
+        echo json_encode(SUCCESSFUL_RESULT);
+    }
+    
 

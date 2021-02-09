@@ -1,6 +1,6 @@
 <?php
 
-function checkRequestedData($data) {
+function checkRequestData($data) {
     foreach($data as $key => $value) {
         if (!in_array($key, COLUMN_NAMES)) {
             echo 'error in column name';

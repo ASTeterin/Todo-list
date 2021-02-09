@@ -7,11 +7,10 @@ $db = $database->getConnection();
 $task = new Task($db);
 $data = getDataFromRequest();
  
-if (!checkRequestedData($data)) {
+if (!checkRequestData($data)) {
     $result = $task->add($data);
     if ($result)
-        echo 'task was added';
-    
+        echo 'task was added';   
     }
     else {
         header('HTTP/1.0 400 Bad Request');

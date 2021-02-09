@@ -3,7 +3,6 @@
 class Task {
     private $db = null;
     private $table_name = 'task';
-
     public $id_task = null;
     public $task_name = null;
     public $task_text = null;
@@ -21,8 +20,7 @@ class Task {
 
     public function delete($id) {
         $this->db->where('id_task', $id);
-        if ($this->db->delete($this->table_name)) echo 'successful';
-
+        return ($this->db->delete($this->table_name))? $id : null ;
     }
 
     public function add($data) {
@@ -39,6 +37,12 @@ class Task {
         $data = ['is_done' => 1];
         $this->db->where('id_task', $id);
         $this->db->update('task', $data);
+    }
+
+    public function getTaskById($id) {
+        $this->db->where('id_task', $id);
+        $task = $this->db->get($this->table_name);
+        return (isset($task)) ? $task : null; 
     }
 
 }
