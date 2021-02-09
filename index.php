@@ -5,6 +5,6 @@ $database = new Database();
 $db = $database->getConnection();
 //print_r($db);
 $task = new Task($db);
-print_r($task->read());
+var_dump($task->getTasksByIsDone(1));
 
 //print_r(getAllData());

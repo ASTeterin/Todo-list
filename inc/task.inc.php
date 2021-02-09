@@ -12,8 +12,8 @@ class Task {
         $this->db = $db;     
     }
 
-    public function read() {
-        $this->db->where(ID_TASK);
+    public function getTasksByIsDone($is_done) {
+        $this->db->where(IS_DONE, $is_done);
         $task = $this->db->get($this->table_name);
         return (isset($task)) ? $task : null; 
     }
@@ -39,6 +39,10 @@ class Task {
         $this->db->where(ID_TASK, $id);
         $task = $this->db->get($this->table_name);
         return (isset($task)) ? $task : null; 
+    }
+
+    public function getOutstandingTasks() {
+
     }
 
 }
