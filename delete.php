@@ -15,18 +15,14 @@ $data = getDataFromRequest();
 
 if (!$data[ID_TASK]) {
     header('HTTP/1.0 400 Bad Request');
-    echo json_encode(array(
-        'error' => 'Bad Request'
-        ));
+    echo json_encode(BAD_REQUEST);
     return;
 }
 
 $id_task = $data[ID_TASK];
 if (!$task->getTaskById($id_task)) {
     header('HTTP/1.0 400 Bad Request');
-    echo json_encode(array(
-        'error' => 'Task is missing'
-        ));
+    echo json_encode(NO_TASK);
     return;    
 }
 
