@@ -40,9 +40,4 @@ class Task {
         $task = $this->db->get($this->table_name);
         return (isset($task)) ? $task : null; 
     }
-
-    public function getOutstandingTasks() {
-
-    }
-
 }

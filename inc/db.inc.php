@@ -1,6 +1,5 @@
 <?php
 
-
 class Database {
 
     private $host = HOST;
@@ -15,6 +14,4 @@ class Database {
         $this->db = new MysqliDb($this->host, $this->username, $this->password, $this->db_name);
         return $this->db;
     }
-
-
 }

@@ -13,6 +13,7 @@ const UPDATE = 'update';
 const ID_TASK = 'id_task';
 const IS_DONE = 'is_done';
 const TASK_IS_DONE = 1;
+const TASK_IS_NOT_COMPLETED = 0;
 const COLUMN_NAMES = ['task_name', 'task_text', 'is_done'];
 
 const SUCCESSFUL_RESULT = ['result' => 'success'];
