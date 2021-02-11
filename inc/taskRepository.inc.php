@@ -1,13 +1,9 @@
 <?php
 
-class Task {
+class TaskRepository {
     private $db = null;
     private $tableName = TABLE;
-    public $idTask = null;
-    public $taskName = null;
-    public $taskText = null;
-    public $isDone = null;
-
+    
     public function __construct($db) 
     {
         $this->db = $db;     
