@@ -7,20 +7,22 @@ $task = new Task($db);
 $data = getDataFromRequest();
 
 if (!$data[ID_TASK]) {
-    header('HTTP/1.0 400 Bad Request');
-    echo json_encode(BAD_REQUEST);
+    generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }
 
-$id_task = $data[ID_TASK];
-if (!$task->getTaskById($id_task)) {
-    header('HTTP/1.0 400 Bad Request');
-    echo json_encode(NO_TASK);
+$idTask = $data[ID_TASK];
+if (!$task->getTaskById($idTask)) {
+    generateResponse(STATUS_404, NO_TASK);
     return;    
 }
 
-if ($task->makeDone($id_task)) {
-    echo json_encode(SUCCESSFUL_RESULT);
+
+if (($task->makeDone($idTask))) {
+    generateResponse(STATUS_200, SUCCESSFUL_RESULT);
+}
+else {
+    generateResponse(STATUS_500, SERVER_ERROR);
 }
 
 

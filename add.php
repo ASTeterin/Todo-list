@@ -8,9 +8,8 @@ $task = new Task($db);
 $data = getDataFromRequest();
  
 if (checkAddRequest($data) <> ERR_NO_ERROR) {
-    header('HTTP/1.0 400 Bad Request');
-    echo json_encode(BAD_REQUEST);
+    generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }
 
-echo ($task->add($data))? json_encode(SUCCESSFUL_RESULT) : json_encode(DB_ERROR); 
+($task->add($data))?  generateResponse(STATUS_200, SUCCESSFUL_RESULT) : generateResponse(STATUS_500, SERVER_ERROR); 

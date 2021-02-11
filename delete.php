@@ -19,15 +19,15 @@ if (!$data[ID_TASK]) {
     return;
 }
 
-$id_task = $data[ID_TASK];
-if (!$task->getTaskById($id_task)) {
-    header('HTTP/1.0 400 Bad Request');
+$idTask = $data[ID_TASK];
+if (!$task->getTaskById($idTask)) {
+    header('HTTP/1.0 404 Bad Request');
     echo json_encode(NO_TASK);
     return;    
 }
 
-    if ($task->delete($data[ID_TASK])) {
-        echo json_encode(SUCCESSFUL_RESULT);
-    }
+if ($task->delete($data[ID_TASK])) {
+    echo json_encode(SUCCESSFUL_RESULT);
+}
     
 

@@ -2,25 +2,25 @@
 
 class Task {
     private $db = null;
-    private $table_name = TABLE;
-    public $id_task = null;
-    public $task_name = null;
-    public $task_text = null;
-    public $is_done = null;
+    private $tableName = TABLE;
+    public $idTask = null;
+    public $taskName = null;
+    public $taskText = null;
+    public $isDone = null;
 
     public function __construct($db) {
         $this->db = $db;     
     }
 
-    public function getTasksByIsDone($is_done) {
-        $this->db->where(IS_DONE, $is_done);
-        $task = $this->db->get($this->table_name);
+    public function getTasksByIsDone($isDone) {
+        $this->db->where(IS_DONE, $isDone);
+        $task = $this->db->get($this->tableName);
         return (isset($task)) ? $task : null; 
     }
 
     public function delete($id) {
         $this->db->where(ID_TASK, $id);
-        return ($this->db->delete($this->table_name))? $id : null ;
+        return ($this->db->delete($this->tableName))? $id : null ;
     }
 
     public function add($data) {
@@ -37,7 +37,7 @@ class Task {
 
     public function getTaskById($id) {
         $this->db->where(ID_TASK, $id);
-        $task = $this->db->get($this->table_name);
+        $task = $this->db->get($this->tableName);
         return (isset($task)) ? $task : null; 
     }
 }

@@ -16,7 +16,4 @@ const TASK_IS_DONE = 1;
 const TASK_IS_NOT_COMPLETED = 0;
 const COLUMN_NAMES = ['task_name', 'task_text', 'is_done'];
 
-const SUCCESSFUL_RESULT = ['result' => 'success'];
-const BAD_REQUEST = ['error' => 'Bad Request'];
-const NO_TASK = ['error' => 'Task is missing'];
-const DB_ERROR = ['error' => 'DB error'];
+
