@@ -7,6 +7,5 @@ $db = $database->getConnection();
 $task = new Task($db);
 
 $result = $task->getTasksByIsDone(TASK_IS_DONE);
-if ($result) {
-    var_dump($result);
-}
+
+isset($result)? generateResponse(STATUS_200, $result) : generateResponse(STATUS_500, SERVER_ERROR);

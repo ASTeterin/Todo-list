@@ -6,7 +6,7 @@ $db = $database->getConnection();
 $task = new Task($db);
 $data = getDataFromRequest();
 
-if (!$data[ID_TASK]) {
+if (!isset($data[ID_TASK])) {
     generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }
@@ -17,12 +17,7 @@ if (!$task->getTaskById($idTask)) {
     return;    
 }
 
+($task->makeDone($idTask))? generateResponse(STATUS_200, SUCCESSFUL_RESULT) : generateResponse(STATUS_500, SERVER_ERROR);
 
-if (($task->makeDone($idTask))) {
-    generateResponse(STATUS_200, SUCCESSFUL_RESULT);
-}
-else {
-    generateResponse(STATUS_500, SERVER_ERROR);
-}
 
 

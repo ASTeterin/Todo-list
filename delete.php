@@ -1,11 +1,4 @@
 <?php
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
 require_once('inc/common.inc.php');
 
 $database = new Database();
@@ -13,21 +6,17 @@ $db = $database->getConnection();
 $task = new Task($db);
 $data = getDataFromRequest();
 
-if (!$data[ID_TASK]) {
-    header('HTTP/1.0 400 Bad Request');
-    echo json_encode(BAD_REQUEST);
+if (!isset($data[ID_TASK])) {
+    generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }
 
 $idTask = $data[ID_TASK];
 if (!$task->getTaskById($idTask)) {
-    header('HTTP/1.0 404 Bad Request');
-    echo json_encode(NO_TASK);
+    generateResponse(STATUS_404, NO_TASK);
     return;    
 }
 
-if ($task->delete($data[ID_TASK])) {
-    echo json_encode(SUCCESSFUL_RESULT);
-}
+($task->delete($idTask))? generateResponse(STATUS_200, SUCCESSFUL_RESULT) : generateResponse(STATUS_500, SERVER_ERROR);
     
 
