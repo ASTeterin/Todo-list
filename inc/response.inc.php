@@ -10,7 +10,7 @@ const STATUS_400 = 'HTTP/1.0 400 Bad request';
 const STATUS_404 = 'HTTP/1.0 404 Not found';
 const STATUS_500 = 'HTTP/1.0 500 Internal Server Error';
 
-function generateResponse($status, $data)
+function generateResponse($status, $data): void
 {
     header($status);
     echo json_encode($data);    
