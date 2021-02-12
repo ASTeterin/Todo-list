@@ -8,4 +8,11 @@ $task = RepositoryFactory::build(Config::TYPE_REPOSITORY, $db);
 
 $result = $task->getTasksByIsDone(Config::TASK_IS_DONE);
 
-isset($result)? generateResponse(STATUS_200, $result) : generateResponse(STATUS_500, SERVER_ERROR);
+if (isset($result))
+{
+    Response::generateResponse(Response::STATUS_200, $result);
+}
+else
+{
+    Response::generateResponse(Response::STATUS_500, Response::SERVER_ERROR); 
+}

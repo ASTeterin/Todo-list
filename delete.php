@@ -8,17 +8,24 @@ $data = getDataFromRequest();
 
 if (!isset($data[Config::ID_TASK])) 
 {
-    generateResponse(STATUS_400, BAD_REQUEST);
+    Response::generateResponse(Response::STATUS_400, Response::BAD_REQUEST);
     return;
 }
 
 $idTask = $data[Config::ID_TASK];
 if (!$task->getTaskById($idTask)) 
 {
-    generateResponse(STATUS_404, NO_TASK);
+    Response::generateResponse(Response::STATUS_404, Response::NO_TASK);
     return;    
 }
 
-($task->delete($idTask))? generateResponse(STATUS_200, SUCCESSFUL_RESULT) : generateResponse(STATUS_500, SERVER_ERROR);
-    
+$result = $task->delete($idTask);
+if (isset($result))
+{
+    Response::generateResponse(Response::STATUS_200, Response::SUCCESSFUL_RESULT);
+}
+else
+{
+    Response::generateResponse(Response::STATUS_500, Response::SERVER_ERROR); 
+}
 

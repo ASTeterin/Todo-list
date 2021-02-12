@@ -34,7 +34,7 @@ class TaskRepository
     {
         $data = ['is_done' => Config::TASK_IS_DONE];
         $this->db->where(Config::ID_TASK, $id);
-        return ($this->db->update(TABLE, $data))? $id : null;
+        return ($this->db->update(Config::TABLE, $data))? $id : null;
     }
 
     public function getTaskById($id): ?array 

@@ -6,14 +6,14 @@ function checkAddRequest($data): int
     {
         if (!in_array($key, Config::COLUMN_NAMES)) 
         {
-            return ERR_COLUMN_NAME;
+            return TaskError::ERR_COLUMN_NAME;
         }
         if (strlen($value) > Config::MAX_TASK_TEXT_LEN) 
         {
-            return ERR_MAX_LEN_TEXT;
+            return TaskError::ERR_MAX_LEN_TEXT;
         }
     }
-    return ERR_NO_ERROR;   
+    return TaskError::ERR_NO_ERROR;   
 }
 
 function getDataFromRequest(): ?array 

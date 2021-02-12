@@ -7,10 +7,18 @@ $db = $database->getConnection();
 $task = RepositoryFactory::build(Config::TYPE_REPOSITORY, $db);
 $data = getDataFromRequest();
  
-if (checkAddRequest($data) <> ERR_NO_ERROR) 
+if (checkAddRequest($data) <> TaskError::ERR_NO_ERROR) 
 {
-    generateResponse(STATUS_400, BAD_REQUEST);
+    Response::generateResponse(Response::STATUS_400, Response::BAD_REQUEST);
     return;
 }
 
-($task->add($data))?  generateResponse(STATUS_200, SUCCESSFUL_RESULT) : generateResponse(STATUS_500, SERVER_ERROR); 
+if ($task->add($data))
+{
+    Response::generateResponse(Response::STATUS_200, Response::SUCCESSFUL_RESULT);
+}
+else
+{
+    Response::generateResponse(Response::STATUS_500, Response::SERVER_ERROR); 
+}
+
