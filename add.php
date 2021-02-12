@@ -4,7 +4,7 @@ require_once('inc/common.inc.php');
 
 $database = new Database();
 $db = $database->getConnection();
-$task = RepositoryFactory::build(TYPE_REPOSITORY, $db);
+$task = RepositoryFactory::build(Config::TYPE_REPOSITORY, $db);
 $data = getDataFromRequest();
  
 if (checkAddRequest($data) <> ERR_NO_ERROR) 

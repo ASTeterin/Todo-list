@@ -2,10 +2,10 @@
 
 class Database {
 
-    private $host = HOST;
-    private $db_name = DATABASE;
-    private $username = USER;
-    private $password = PASSWORD;
+    private $host = Config::HOST;
+    private $db_name = Config::DATABASE;
+    private $username = Config::USER;
+    private $password = Config::PASSWORD;
 
     public function getConnection()
     {
