@@ -1,9 +1,10 @@
 <?php
 
-class TaskRepository {
+class TaskRepository 
+{
     private $db = null;
     private $tableName = TABLE;
-    
+
     public function __construct($db) 
     {
         $this->db = $db;     

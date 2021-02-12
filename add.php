@@ -7,7 +7,8 @@ $db = $database->getConnection();
 $task = RepositoryFactory::build(TYPE_REPOSITORY, $db);
 $data = getDataFromRequest();
  
-if (checkAddRequest($data) <> ERR_NO_ERROR) {
+if (checkAddRequest($data) <> ERR_NO_ERROR) 
+{
     generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }

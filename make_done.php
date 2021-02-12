@@ -6,13 +6,15 @@ $db = $database->getConnection();
 $task = RepositoryFactory::build(TYPE_REPOSITORY, $db);
 $data = getDataFromRequest();
 
-if (!isset($data[ID_TASK])) {
+if (!isset($data[ID_TASK])) 
+{
     generateResponse(STATUS_400, BAD_REQUEST);
     return;
 }
 
 $idTask = $data[ID_TASK];
-if (!$task->getTaskById($idTask)) {
+if (!$task->getTaskById($idTask)) 
+{
     generateResponse(STATUS_404, NO_TASK);
     return;    
 }

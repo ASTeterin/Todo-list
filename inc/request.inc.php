@@ -2,11 +2,14 @@
 
 function checkAddRequest($data): int 
 {
-    foreach($data as $key => $value) {
-        if (!in_array($key, COLUMN_NAMES)) {
+    foreach($data as $key => $value) 
+    {
+        if (!in_array($key, COLUMN_NAMES)) 
+        {
             return ERR_COLUMN_NAME;
         }
-        if (strlen($value) > MAX_TASK_TEXT_LEN) {
+        if (strlen($value) > MAX_TASK_TEXT_LEN) 
+        {
             return ERR_MAX_LEN_TEXT;
         }
     }
